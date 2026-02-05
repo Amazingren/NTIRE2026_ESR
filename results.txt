@@ -1,0 +1,1 @@
+Model               	Val PSNR  	Test PSNR 	Val Time [ms] 	Test Time [ms]	Ave Time [ms] 	Params [M]	FLOPs [G] 	Acts [M]	Mem [M] 	Conv    
