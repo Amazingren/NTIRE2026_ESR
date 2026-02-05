@@ -197,12 +197,12 @@ If you feel this codebase and the report paper is useful for you, please cite ou
 - Hang Guo, Tsinghua University, China (cshguo@gmail.com)
 - Yan Shu, UNITN, Italy (yan.shu@unitn.it)
 - Jiaqi Ma, MBZUAI, UAE (jiaqi.ma@mbzuai.ac.ae)
-- Guofeng Mei, FBK, Italy
-- Lei Sun, INSAIT, BG
+- Guofeng Mei, FBK, Italy (gmei@fbk.eu)
+- Lei Sun, INSAIT, BG (lei.sun@insait.ai)
 - Zongwei Wu, University of Wuerzburg, Germany (zongwei.wu@uni-wuerzburg.de)
-- Salman Khan, MBZUAI, UAE
-- Fahad Shahbaz Khan, MBZUAI, UAE
-- Radu Timofte, University of Wuerzburg, Germany (Radu.Timofte@uni-wuerzburg.de) 
+- Salman Khan, MBZUAI, UAE (salman.khan@mbzuai.ac.ae)
+- Fahad Shahbaz Khan, MBZUAI, UAE (fahad.khan@mbzuai.ac.ae)
+- Radu Timofte, University of Wuerzburg, Germany (radu.timofte@uni-wuerzburg.de) 
 - Yawei Li, ETH Zurich, Switzerland (yawei.li@vision.ee.ethz.ch)
 
 If you have any question, feel free to reach out the contact persons and direct managers of the NTIRE challenge.
