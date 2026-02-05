@@ -10,15 +10,15 @@
 
 ## About the Challenge
 
-In collaboration with the NTIRE workshop, we are hosting a challenge focused on Efficient Super-Resolution ([NTIRE2026_ESR](https://www.codabench.org/competitions/13553/)). This involves the task of enhancing the resolution of an input image by a factor of x4, utilizing a set of pre-existing examples comprising both low-resolution and their corresponding high-resolution images. The challenge encompasses one :trophy: main track which consists of three :gem: sub-tracks, i.e., the Inference Runtime, FLOPs (Floating Point Operations Per Second), and Parameters. The baseline method in NTIRE2026_ESR is [EFDN](https://arxiv.org/pdf/2204.08759) (*Wang Yan, 2023*), the 1st place for the overall performance of NTIRE2023 Efficient Super-Resolution Challenge. Details are shown below:
+In collaboration with the NTIRE workshop, we are hosting a challenge focused on Efficient Super-Resolution ([NTIRE2026_ESR](https://www.codabench.org/competitions/13553/)). This involves the task of enhancing the resolution of an input image by a factor of x4, utilizing a set of pre-existing examples comprising both low-resolution and their corresponding high-resolution images. The challenge encompasses one :trophy: main track which consists of three :gem: sub-tracks, i.e., the Inference Runtime, FLOPs (Floating Point Operations Per Second), and Parameters. The baseline method in NTIRE2026_ESR is [SPAN](https://arxiv.org/abs/2311.12770) (*Cheng Yan, 2024*), the 1st place for the overall performance of NTIRE2024 Efficient Super-Resolution Challenge. Details are shown below:
 
 - :trophy: Main-track: **Overall Performance** (Runtime, Parameters, FLOPs,) the aim is to obtain a network design / solution with the best overall performance in terms of inference runtime, FLOPS, and parameters on a common GPU (i.e., NVIDIA RTX A6000 GPU) while being constrained to maintain or improve the PSNR results.
 
-- :gem: Sub-track 1: **Inference Runtime**, the aim is to obtain a network design / solution with the lowest inference time (runtime) on a common GPU (i.e., NVIDIA RTX A6000 GPU) while being constrained to maintain or improve over the baseline method EFDN in terms of number of parameters, FLOPs, and the PSNR result.
+- :gem: Sub-track 1: **Inference Runtime**, the aim is to obtain a network design / solution with the lowest inference time (runtime) on a common GPU (i.e., NVIDIA RTX A6000 GPU) while being constrained to maintain or improve over the baseline method SPAN in terms of number of parameters, FLOPs, and the PSNR result.
 
-- :gem: Sub-track 2: **FLOPs**, the aim is to obtain a network design / solution with the lowest amount of FLOPs on a common GPU (i.e., NVIDIA RTX A6000 GPU) while being constrained to maintain or improve the inference runtime, the parameters, and the PSNR results of EFDN.
+- :gem: Sub-track 2: **FLOPs**, the aim is to obtain a network design / solution with the lowest amount of FLOPs on a common GPU (i.e., NVIDIA RTX A6000 GPU) while being constrained to maintain or improve the inference runtime, the parameters, and the PSNR results of SPAN.
 
-- :gem: Sub-track 3: **Parameters**, the aim is to obtain a network design / solution with the lowest amount of parameters on a common GPU (i.e., NVIDIA RTX A6000 GPU) while being constrained to maintain the FLOPs, the inference time (runtime), and the PSNR result of EFDN.
+- :gem: Sub-track 3: **Parameters**, the aim is to obtain a network design / solution with the lowest amount of parameters on a common GPU (i.e., NVIDIA RTX A6000 GPU) while being constrained to maintain the FLOPs, the inference time (runtime), and the PSNR result of SPAN.
 
 It's important to highlight that to determine the final ranking and challenge winners, greater weight will be given to teams or participants who demonstrate improvements in more than one aspect (runtime, FLOPs, and parameters) over the provided reference solution.
 
@@ -27,7 +27,7 @@ To ensure fairness in the evaluation process, it is imperative to adhere to the 
     Refrain from training your model using the validation LR images, validation HR images, or testing LR images. The test datasets will not be disclosed, making PSNR performance on the test datasets a crucial factor in the final evaluation.
 
 - **PSNR Threshold and Ranking Eligibility:**
-    Methods with a PSNR below the specified threshold (i.e., 26.90 dB on DIV2K_LSDIR_valid and, 26.99 dB on DIV2K_LSDIR_test) will not be considered for the subsequent ranking process. It is essential to meet the minimum PSNR requirement to be eligible for further evaluation and ranking.
+    Methods with a PSNR below the specified threshold (i.e., 26.94 dB on DIV2K_LSDIR_valid and, 27.01 dB on DIV2K_LSDIR_test) will not be considered for the subsequent ranking process. It is essential to meet the minimum PSNR requirement to be eligible for further evaluation and ranking.
 
 
 ## The Environments
@@ -46,7 +46,7 @@ or take it as a reference based on your original environments.
 After downloaded all the necessary validate dataset ([DIV2K_LSDIR_valid_LR](https://drive.google.com/file/d/1YUDrjUSMhhdx1s-O0I1qPa_HjW-S34Yj/view?usp=sharing) and [DIV2K_LSDIR_valid_HR](https://drive.google.com/file/d/1z1UtfewPatuPVTeAAzeTjhEGk4dg2i8v/view?usp=sharing)), please organize them as follows:
 
 ```
-|NTIRE2025_ESR_Challenge/
+|NTIRE2026_ESR_Challenge/
 |--DIV2K_LSDIR_valid_HR/
 |    |--000001.png
 |    |--000002.png
@@ -65,7 +65,7 @@ After downloaded all the necessary validate dataset ([DIV2K_LSDIR_valid_LR](http
 |    |--0802x4.png
 |    |--...
 |    |--0900.png
-|--NTIRE2025_ESR/
+|--NTIRE2026_ESR/
 |    |--...
 |    |--test_demo.py
 |    |--...
@@ -75,7 +75,7 @@ After downloaded all the necessary validate dataset ([DIV2K_LSDIR_valid_LR](http
 
 ## How to test the baseline model?
 
-1. `git clone https://github.com/Amazingren/NTIRE2025_ESR.git`
+1. `git clone https://github.com/Amazingren/NTIRE2026_ESR.git`
 2. Select the model you would like to test from [`run.sh`](./run.sh)
     ```bash
     CUDA_VISIBLE_DEVICES=0 python test_demo.py --data_dir [path to your data dir] --save_dir [path to your save dir] --model_id 0
@@ -83,12 +83,12 @@ After downloaded all the necessary validate dataset ([DIV2K_LSDIR_valid_LR](http
     - Be sure the change the directories `--data_dir` and `--save_dir`.
 3. More detailed example-command can be found in `run.sh` for your convenience.
 
-As a reference, we provide the results of EFDN (baseline method) below:
-- Average PSNR on DIV2K_LSDIR_valid: 26.93 dB
+As a reference, we provide the results of SPAN (baseline method) below:
+- Average PSNR on DIV2K_LSDIR_valid: 26.94 dB
 - Average PSNR on DIV2K_LSDIR_test: 27.01 dB
-- Number of parameters: 0.276 M
-- Runtime: 16.69 ms (Average runtime of 18.77 ms on DIV2K_LSDIR_valid data and 14.61 ms on DIV2K_LSDIR_test data)
-- FLOPs on an LR image of size 256×256: 16.70 G
+- Number of parameters: 0.151 M
+- Runtime: 5.59 ms (Average runtime of 5.62 ms on DIV2K_LSDIR_valid data and 5.57 ms on DIV2K_LSDIR_test data)
+- FLOPs on an LR image of size 256×256: 9.83 G
 
     Note that the results reported above are the average of 5 runs, and each run is conducted on the same device (i.e., NVIDIA RTX A6000 GPU).
 
@@ -116,10 +116,10 @@ As a reference, we provide the results of EFDN (baseline method) below:
 
 ```python
     from utils.model_summary import get_model_flops, get_model_activation
-    from models.team00_EFDN import EFDN
+    from models.team00_SPAN import SPAN
     from fvcore.nn import FlopCountAnalysis
 
-    model = EFDN()
+    model = SPAN()
     
     input_dim = (3, 256, 256)  # set the input dimension
     activations, num_conv = get_model_activation(model, input_dim)
@@ -132,7 +132,7 @@ As a reference, we provide the results of EFDN (baseline method) below:
     # flops = flops / 10 ** 9
     # print("{:>16s} : {:<.4f} [G]".format("FLOPs", flops))
 
-    # fvcore is used in NTIRE2025_ESR for FLOPs calculation
+    # fvcore is used in NTIRE2026_ESR for FLOPs calculation
     input_fake = torch.rand(1, 3, 256, 256).to(device)
     flops = FlopCountAnalysis(model, input_fake).total()
     flops = flops/10**9
@@ -148,26 +148,26 @@ As a reference, we provide the results of EFDN (baseline method) below:
 After the organizers receive all the submitted codes/checkpoints/results, four steps are adopted for the evaluation:
 
 - Step1: The organizers will execute each model five times to reevaluate all submitted methods on the same device, specifically the NVIDIA RTX A6000. The average results of these five runs will be documented for each metric.
-- Step2: To ensure PSNR consistency with the baseline method EFDN, PSNR checks will be conducted for all submitted methods. Any method with a PSNR below 26.90 dB on the DIV2K_LSDIR_valid dataset or less than 26.99 on the DIV2K_LSDIR_test datasets will be excluded from the comparison list for the remaining rankings. 
+- Step2: To ensure PSNR consistency with the baseline method SPAN, PSNR checks will be conducted for all submitted methods. Any method with a PSNR below 26.94 dB on the DIV2K_LSDIR_valid dataset or less than 27.01 on the DIV2K_LSDIR_test datasets will be excluded from the comparison list for the remaining rankings. 
 - Step3: For the rest, the *Score_Runtime*, *Score_FLOPs*, and the *Score_Params* will be calculated as follows:
 
 ```
-     Score_Runtime = exp(2*Runtime / Runtime_EFDN)
+     Score_Runtime = exp(2*Runtime / Runtime_SPAN)
     
-     Score_FLOPs = exp(2*FLOPs / FLOPs_EFDN)
+     Score_FLOPs = exp(2*FLOPs / FLOPs_SPAN)
      
-     Score_Params = exp(2*Params / Params_EFDN)
+     Score_Params = exp(2*Params / Params_SPAN)
 ```
 -   Step4: The final comparison score will be calculated as follows:
 ```
     Score_Final = 0.7*Score_Runtime + 0.15*Score_FLOPs + 0.15*Score_Params
 ```
-Let's take the baseline as an example, given the results (i.e., average Runtime_EFDN = 16.69 ms, FLOPs_EFDN = 16.70 G, and Params_EFDN = 0.276 M) of EFDN, we have:
+Let's take the baseline as an example, given the results (i.e., average Runtime_SPAN = 5.59 ms, FLOPs_SPAN = 9.83 G, and Params_SPAN = 0.151 M) of SPAN, we have:
 ```
     Score_Runtime = 7.3891
-    Score_FLOPs = 7.3891
-    Score_Params = 7.3891
-    Score_Final = 7.3891 
+    Score_FLOPs   = 7.3891
+    Score_Params  = 7.3891
+    Score_Final   = 7.3891
 ```
 :heavy_exclamation_mark:The ranking for each sub-track will be generated based on the corresponding Score (i.e., *Score_Runtime*, *Score_FLOPs*, and *Score_Params*), while for the main track, the ranking will be determined by the *Score_Final*.
 

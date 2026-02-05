@@ -1,1 +1,2 @@
-Model               	Val PSNR  	Test PSNR 	Val Time [ms] 	Test Time [ms]	Ave Time [ms] 	Params [M]	FLOPs [G] 	Acts [M]	Mem [M] 	Conv    
+Model               	Val PSNR  	Val Time [ms] 	Params [M]	FLOPs [G] 	Acts [M]	Mem [M] 	Conv    
+00_SPAN             	26.94     	12.11         	0.151     	9.83      	41.68   	708.58  	  22    
