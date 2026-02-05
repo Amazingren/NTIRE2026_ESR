@@ -5,7 +5,7 @@
 </div>
 
 ## News
-- :t-rex: February 6th, 2025: Our Challenge Repo. is ready!
+- :t-rex: February 6th, 2026: Our Challenge Repo. is ready!
 
 
 ## About the Challenge
