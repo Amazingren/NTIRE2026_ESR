@@ -207,7 +207,7 @@ If you feel this codebase and the report paper is useful for you, please cite ou
 - Salman Khan, MBZUAI, UAE (salman.khan@mbzuai.ac.ae)
 - Fahad Shahbaz Khan, MBZUAI, UAE (fahad.khan@mbzuai.ac.ae)
 - Radu Timofte, University of Wuerzburg, Germany (radu.timofte@uni-wuerzburg.de) 
-- Yawei Li, ETH Zurich, Switzerland (yawei.li@vision.ee.ethz.ch)
+- Yawei Li, ETH Zurich, Switzerland (yawei.li.ai@gmail.com)
 
 If you have any question, feel free to reach out the contact persons and direct managers of the NTIRE challenge.
 
