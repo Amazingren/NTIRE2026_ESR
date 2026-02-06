@@ -90,7 +90,7 @@ As a reference, we provide the results of SPAN (baseline method) below:
 - Runtime: 5.59 ms (Average runtime of 5.62 ms on DIV2K_LSDIR_valid data and 5.57 ms on DIV2K_LSDIR_test data)
 - FLOPs on an LR image of size 256×256: 9.83 G
 
-    Note that the results reported above are the average of 5 runs, and each run is conducted on the same device (i.e., NVIDIA RTX A6000 GPU).
+    Note that the results reported above are the average of 5 runs, and each run is conducted on the same device (e.g., NVIDIA RTX A6000 GPU).
 
 
 ## How to add your model to this baseline?
@@ -148,7 +148,7 @@ As a reference, we provide the results of SPAN (baseline method) below:
 After the organizers receive all the submitted codes/checkpoints/results, four steps are adopted for the evaluation:
 
 - Step1: The organizers will execute each model five times to reevaluate all submitted methods on the same device, specifically the NVIDIA RTX A6000. The average results of these five runs will be documented for each metric.
-- Step2: To ensure PSNR consistency with the baseline method SPAN, PSNR checks will be conducted for all submitted methods. Any method with a PSNR below 26.94 dB on the DIV2K_LSDIR_valid dataset or less than 27.01 on the DIV2K_LSDIR_test datasets will be excluded from the comparison list for the remaining rankings. 
+- Step2: To ensure PSNR consistency with the baseline method SPAN, PSNR checks will be conducted for all submitted methods. Any method with a PSNR below 26.90 dB on the DIV2K_LSDIR_valid dataset or less than 26.99 on the DIV2K_LSDIR_test datasets will be excluded from the comparison list for the remaining rankings. 
 - Step3: For the rest, the *Score_Runtime*, *Score_FLOPs*, and the *Score_Params* will be calculated as follows:
 
 ```
@@ -160,7 +160,7 @@ After the organizers receive all the submitted codes/checkpoints/results, four s
 ```
 -   Step4: The final comparison score will be calculated as follows:
 ```
-    Score_Final = 0.7*Score_Runtime + 0.15*Score_FLOPs + 0.15*Score_Params
+    Score_Final = 0.8*Score_Runtime + 0.1*Score_FLOPs + 0.1*Score_Params
 ```
 Let's take the baseline as an example, given the results (i.e., average Runtime_SPAN = 5.59 ms, FLOPs_SPAN = 9.83 G, and Params_SPAN = 0.151 M) of SPAN, we have:
 ```
