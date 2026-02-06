@@ -22,12 +22,16 @@ In collaboration with the NTIRE workshop, we are hosting a challenge focused on 
 
 It's important to highlight that to determine the final ranking and challenge winners, greater weight will be given to teams or participants who demonstrate improvements in more than one aspect (runtime, FLOPs, and parameters) over the provided reference solution.
 
+🌟 **New This Year:**
+
+Participants are encouraged to explore model compression and acceleration techniques, such as quantization and pruning, to further reduce inference runtime and overall computational cost. Submissions that achieve efficiency gains without sacrificing reconstruction quality will be viewed favorably in the final evaluation.
+
 To ensure fairness in the evaluation process, it is imperative to adhere to the following guidelines:
 - **Avoid Training with Specific Image Sets:**
     Refrain from training your model using the validation LR images, validation HR images, or testing LR images. The test datasets will not be disclosed, making PSNR performance on the test datasets a crucial factor in the final evaluation.
 
 - **PSNR Threshold and Ranking Eligibility:**
-    Methods with a PSNR below the specified threshold (i.e., 26.94 dB on DIV2K_LSDIR_valid and, 27.01 dB on DIV2K_LSDIR_test) will not be considered for the subsequent ranking process. It is essential to meet the minimum PSNR requirement to be eligible for further evaluation and ranking.
+    Methods with a PSNR below the specified threshold (i.e., 26.90 dB on DIV2K_LSDIR_valid and, 26.99 dB on DIV2K_LSDIR_test) will not be considered for the subsequent ranking process. It is essential to meet the minimum PSNR requirement to be eligible for further evaluation and ranking.
 
 
 ## The Environments
