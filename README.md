@@ -197,15 +197,17 @@ If you feel this codebase and the report paper is useful for you, please cite ou
 ```
 
 ## Organizers
-- **Bin Ren**, MBZUAI, UAE (bin.ren@mbzuai.ac.ae)
+- **Bin Ren**, MBZUAI, United Arab Emirates (bin.ren@mbzuai.ac.ae)
 - **Hang Guo**, Tsinghua University, China (cshguo@gmail.com)
 - **Yan Shu**, UNITN, Italy (yan.shu@unitn.it)
-- **Jiaqi Ma**, MBZUAI, UAE (jiaqi.ma@mbzuai.ac.ae)
+- **Jiaqi Ma**, MBZUAI, United Arab Emirates (jiaqi.ma@mbzuai.ac.ae)
+- **Ziteng Cui**, Univesity of Tokyo, Japan (cui@mi.t.u-tokyo.ac.jp)
+- **Shuhong Liu**, Univesity of Tokyo, Japan (s-liu@mi.t.u-tokyo.ac.jp)
 - **Guofeng Mei**, FBK, Italy (gmei@fbk.eu)
 - **Lei Sun**, INSAIT, BG (lei.sun@insait.ai)
 - **Zongwei Wu**, University of Wuerzburg, Germany (zongwei.wu@uni-wuerzburg.de)
-- **Salman Khan**, MBZUAI, UAE (salman.khan@mbzuai.ac.ae)
-- **Fahad Shahbaz Khan**, MBZUAI, UAE (fahad.khan@mbzuai.ac.ae)
+- **Salman Khan**, MBZUAI, United Arab Emirates (salman.khan@mbzuai.ac.ae)
+- **Fahad Shahbaz Khan**, MBZUAI, United Arab Emirates (fahad.khan@mbzuai.ac.ae)
 - **Radu Timofte**, University of Wuerzburg, Germany (radu.timofte@uni-wuerzburg.de) 
 - **Yawei Li**, ETH Zurich, Switzerland (yawei.li.ai@gmail.com)
 
