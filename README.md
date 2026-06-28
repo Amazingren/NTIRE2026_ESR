@@ -5,6 +5,8 @@
 </div>
 
 ## News
+- :trophy: **June 28th, 2026: The challenge has concluded. All team submissions, checkpoints, and final results are now released!**
+- :page_facing_up: June 2026: Our challenge report is available — *The Eleventh NTIRE 2026 Efficient Super-Resolution Challenge Report*.
 - :t-rex: February 6th, 2026: Our Challenge Repo. is ready!
 
 
@@ -91,7 +93,7 @@ As a reference, we provide the results of SPAN (baseline method) below:
 - Average PSNR on DIV2K_LSDIR_valid: 26.94 dB
 - Average PSNR on DIV2K_LSDIR_test: 27.01 dB
 - Number of parameters: 0.151 M
-- Runtime: 5.59 ms (Average runtime of 5.62 ms on DIV2K_LSDIR_valid data and 5.57 ms on DIV2K_LSDIR_test data)
+- Runtime: 7.74 ms (Average runtime of 8.00 ms on DIV2K_LSDIR_valid data and 7.47 ms on DIV2K_LSDIR_test data)
 - FLOPs on an LR image of size 256×256: 9.83 G
 
     Note that the results reported above are the average of 5 runs, and each run is conducted on the same device (e.g., NVIDIA RTX A6000 GPU).
@@ -166,7 +168,7 @@ After the organizers receive all the submitted codes/checkpoints/results, four s
 ```
     Score_Final = 0.8*Score_Runtime + 0.1*Score_FLOPs + 0.1*Score_Params
 ```
-Let's take the baseline as an example, given the results (i.e., average Runtime_SPAN = 5.59 ms, FLOPs_SPAN = 9.83 G, and Params_SPAN = 0.151 M) of SPAN, we have:
+Let's take the baseline as an example, given the results (i.e., average Runtime_SPAN = 7.74 ms, FLOPs_SPAN = 9.83 G, and Params_SPAN = 0.151 M) of SPAN, we have:
 ```
     Score_Runtime = 7.3891
     Score_FLOPs   = 7.3891
@@ -177,8 +179,16 @@ Let's take the baseline as an example, given the results (i.e., average Runtime_
 
 
 ## References
-If you feel this codebase and the report paper is useful for you, please cite our challenge report:
-```
+If you find this codebase and the challenge report useful for your research, please consider citing:
+```bibtex
+@inproceedings{ren2026eleventh,
+  title={The eleventh NTIRE 2026 efficient super-resolution challenge report},
+  author={Ren, Bin and Guo, Hang and Shu, Yan and Ma, Jiaqi and Cui, Ziteng and Liu, Shuhong and Mei, Guofeng and Sun, Lei and Wu, Zongwei and Khan, Fahad Shahbaz Khan and others},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={2460--2484},
+  year={2026}
+}
+
 @inproceedings{ren2025tenth,
   title={The tenth NTIRE 2025 efficient super-resolution challenge report},
   author={Ren, Bin and Guo, Hang and Sun, Lei and Wu, Zongwei and Timofte, Radu and Li, Yawei and others},

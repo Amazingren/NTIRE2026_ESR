@@ -17,10 +17,10 @@ CUDA_VISIBLE_DEVICES=0 python test_demo.py \
 # DATA_DIR="/Your/Validate/Datasets/Path"
 # SAVE_DIR="./results"
 # MODEL_IDS=(
-#     0 1 3 4 5 7 10 11 13 15 
-#     16 17 18 19 21 23 25 26 
-#     28 29 30 31 33 34 38 39 
-#     41 42 43 44 45 46 48
+#     0 1 4 5 6
+#     9 10 11 12 15
+#     16 17 18 19 20
+#     21 22
 # )
 
 # for model_id in "${MODEL_IDS[@]}"

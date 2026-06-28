@@ -17,12 +17,6 @@ def select_model(args, device):
     # Different networks are trained with input range of either [0,1] or [0,255]. The range is determined manually.
     model_id = args.model_id
     if model_id == 0:
-        # Baseline: The 1st Place of the `Overall Performance`` of the NTIRE 2024 Efficient SR Challenge
-        # Swift Parameter-free Attention Network for Efficient Super-Resolution
-        # arXiv: https://arxiv.org/abs/2311.12770
-        # Original Code: https://github.com/hongyuanyu/SPAN
-        # Ckpts: team00_SPAN.pth
-
         from models.team00_SPAN import SPAN
         name, data_range = f"{model_id:02}_SPAN", 1.0
         model = SPAN(3, 3, upscale=4, feature_channels=28).eval().to(device)
@@ -30,12 +24,197 @@ def select_model(args, device):
         stat_dict = torch.load(model_path)
         model.load_state_dict(stat_dict, strict=False)
     elif model_id == 1:
-        pass  # ---- Put your model here as below ---
-        # from models.team01_[your_model_name] import [your_model_name]
-        # name, data_range = f"{model_id:02}_[your_model_name]", [255.0 / 1.0] # You can choose either 1.0 or 255.0 based on your own model
-        # model_path = os.path.join('model_zoo', 'team01_[your_model_name].pth')
-        # model = [your_model_name]()
-        # model.load_state_dict(torch.load(model_path), strict=True)
+        import importlib
+        model_module = importlib.import_module(f'models.team01_PDS')
+        name, data_range = f"{model_id:02}_PDS", 1.0
+        model = getattr(model_module, f'PDS')().eval().to(device)
+        model_path = os.path.join('model_zoo', f'team01_PDS.pth')
+        stat_dict = torch.load(model_path)
+        model.load_state_dict(stat_dict, strict=True)
+    elif model_id == 4:
+        from models.team04_ZenoSR import ZenoSR
+        name, data_range = f"{model_id:02}_ZenoSR", 1.0
+        model_path = os.path.join('model_zoo', 'team04_ZenoSR.pth')
+        model = ZenoSR()
+        ckpt = torch.load(model_path, map_location=device)
+        if isinstance(ckpt, dict) and ('params_ema' in ckpt or 'params' in ckpt):
+            state = ckpt.get('params_ema', ckpt.get('params'))
+        else:
+            state = ckpt
+        if isinstance(state, dict) and any(k.startswith('module.') for k in state.keys()):
+            state = {k.replace('module.', '', 1): v for k, v in state.items()}
+        model.load_state_dict(state, strict=True)
+    elif model_id == 5:
+        from models.team05_1_4mamba_single_arch import SPANMamba_single_1_4T05
+        name, data_range = f"{model_id:02}_SPANMamba_single_1_4T05", 1.0  # You can choose either 1.0 or 255.0 based on your own model
+        model_path = os.path.join('model_zoo', 'team05_1_4mamba_single_arch.pth')
+        model = SPANMamba_single_1_4T05()
+        ckpt = torch.load(model_path, map_location=device)
+        if 'params_ema' in ckpt:
+            state_dict = ckpt['params_ema']
+        elif 'params' in ckpt:
+            state_dict = ckpt['params']
+        else:
+            state_dict = ckpt
+        model.load_state_dict(state_dict, strict=True)
+    elif model_id == 6:
+        from models.team06_HAESR import HAESR
+        name, data_range = f"{model_id:02}_HAESR", 1.0
+        model = HAESR(num_feat=48, upsampling=4, window_size=8, res_num=3, block_num=1, bias=True, ffn_bias=True,
+                      pe=True).eval().to(device)
+        model_path = os.path.join('model_zoo', f'team06_HAESR.pth')
+        # stat_dict = torch.load(model_path)['params']
+        # model.load_state_dict(stat_dict, strict=False)
+        state_dict = torch.load(model_path)
+        model.load_state_dict(state_dict['params_ema'], strict=True)
+    elif model_id == 9:
+        from models.team09_RFDN_SPAN import RFDN_SPAN
+        name, data_range = f"{model_id:03}_RFDN_SPAN", 1.0
+        model_path = os.path.join('model_zoo', f'team09_RFDN_SPAN.pth')
+        model = RFDN_SPAN(in_nc=3, nf=46, num_modules=4, out_nc=3, upscale=4)
+        model.load_state_dict(torch.load(model_path)["params_ema"], strict=True)
+    elif model_id == 10:
+        from models.team10_HFENet import HFENet
+        name, data_range = f"{model_id:02}_HFENet", 1.0
+        model_path = os.path.join('model_zoo', 'team10_HFENet.pth')
+        model = HFENet()
+        state_dict = torch.load(
+            model_path,
+            map_location='cpu')
+        if 'params' in state_dict:
+            state_dict = state_dict['params']
+        elif 'params_ema' in state_dict:
+            state_dict = state_dict['params_ema']
+        model.load_state_dict(state_dict, strict=True)  # 建议先用 strict=True 检查是否完全匹配
+        model.eval()
+    elif model_id == 11:
+        from models.team11_VSCINet import VSCINet
+        name, data_range = f"{model_id:11}_VSCINet", 1.0
+        model_path = os.path.join('model_zoo', 'team11_VSCINet.pth')
+        model = VSCINet()
+        model.load_state_dict(torch.load(model_path)['params_ema'], strict=True)
+    elif model_id == 12:
+        from models.team12_DWMamba import DWMamba
+        name, data_range = f"{model_id:02}_DWMamba", 1.0
+        model = DWMamba(
+            upscale=4,
+            in_chans=3,
+            img_range=1.0,
+            img_size=64,
+            embed_dim=48,
+            d_state=8,
+            depths=[2, 2, 2, 2],
+            num_heads=[4, 4, 4, 4],
+            window_size=16,
+            inner_rank=32,
+            num_tokens=64,
+            convffn_kernel_size=5,
+            mlp_ratio=2.0,
+            upsampler='pixelshuffledirect',
+            resi_connection='1conv').eval().to(device)
+        model_path = os.path.join('model_zoo', f'team12_DWMamba.pth')
+        stat_dict = torch.load(model_path)
+        if 'params' in stat_dict:
+            weight_dict = stat_dict['params']
+        elif 'params_ema' in stat_dict:
+            weight_dict = stat_dict['params_ema']
+        else:
+            weight_dict = stat_dict
+        model.load_state_dict(weight_dict, strict=True)
+    elif model_id == 16:
+        from models.team16_PKDSR import SPANFPrunedKD
+        name, data_range = f"{model_id:02}_PKDSR_FINAL_CKPT", 1.0
+        model = SPANFPrunedKD(3, 3, upscale=4, tail_channels=24, feature_channels=32).eval().to(device)
+        model_path = os.path.join('model_zoo', f'team16_PKDSR.pth')
+        stat_dict = torch.load(model_path, map_location=torch.device("cpu"))['params_ema']
+        model.load_state_dict(stat_dict, strict=True)
+    elif model_id == 15:
+        from models.team15_DSCF_Fused import DSCF_Fused
+        name, data_range = f"{model_id:02}_DSCF_Fused", 1.0
+        model_path = os.path.join('model_zoo', 'team15_DSCF_Fused.pth')
+        model = DSCF_Fused(num_in_ch=3, num_out_ch=3, feature_channels=26, upscale=4)
+        model.load_state_dict(torch.load(model_path), strict=True)
+    elif model_id == 17:
+        from models.team17_AMCANet import AMCANet
+        name, data_range = f"{model_id:02}_AMCANet", 1.0
+        model_path = os.path.join('model_zoo', f'team17_AMCANet.pth')
+        model = AMCANet(in_nc=3, out_nc=3, dim=32, n_blocks=7, upscaling_factor=4, num_heads=2).eval().to(device)
+        stat_dict = torch.load(model_path)['params_ema']
+        model.load_state_dict(stat_dict, strict=True)
+    elif model_id == 18:
+        from models.team18_DISP import DISP
+        name, data_range = f"{model_id:02}_DISP", 1.0
+        model_path = os.path.join('model_zoo', 'team18_DISP.pth')
+        model = DISP()
+        model.load_state_dict(torch.load(model_path), strict=True)
+        model.eval()
+        model = model.to(device)
+        inp = torch.randn(1, 3, 256, 256).to(device)
+        for i in range(20):
+            out = model(inp)
+    elif model_id == 19:
+        from models.team19_BVIESR import BVI_SRF
+        name, data_range = f"{model_id:02}_BVIESR", 1.0  # You can choose either 1.0 or 255.0 based on your own model
+        model_path = os.path.join('model_zoo', 'team19_BVIESR.pth')
+        model = BVI_SRF()
+        model.load_state_dict(torch.load(model_path)['params'], strict=True)
+        model = model.cuda()
+        model.eval()
+    elif model_id == 20:
+        from models.team20_ERRN2 import ERRN2
+        name, data_range = f"{model_id:02}_ERRN2", 1.0
+        model_path = os.path.join('model_zoo', 'team20_ERRN2.pth')
+        model = ERRN2(in_channels=3, out_channels=3, feature_channels=32, upscale=4)
+        model.load_state_dict(torch.load(model_path), strict=True)
+    elif model_id == 21:
+        # Load model
+        from models.team21_SAFMN_Deep15 import SAFMN_Deep15
+        model_path = f"./model_zoo/team21_SAFMN_Deep15.pth"
+        name, data_range = f"{model_id:02}_SAFMN", 1.0
+        model = SAFMN_Deep15(num_in_ch=3, num_out_ch=3, dim=40, num_blocks=15, upscale=4)
+        state_dict = torch.load(model_path, map_location=device)
+        if "state_dict" in state_dict:
+            state_dict = state_dict["state_dict"]
+        elif "params_ema" in state_dict:
+            state_dict = state_dict["params_ema"]
+        elif "params" in state_dict:
+            state_dict = state_dict["params"]
+        model.load_state_dict(state_dict, strict=True)
+        model.to(device).eval()
+    elif model_id == 22:
+        # Team 22: SPANV2_ESR
+        import sys, subprocess
+        span_attn_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'span_attention_op')
+        span_attn_dir = os.path.normpath(span_attn_dir)
+        if span_attn_dir not in sys.path:
+            sys.path.insert(0, span_attn_dir)
+        # Auto-build span_attention if not installed
+        try:
+            import span_attention
+        except ImportError:
+            print("[team22] span_attention not found, building from source ...")
+            build_result = subprocess.run(
+                [sys.executable, 'setup.py', 'build_ext', '--inplace'],
+                cwd=span_attn_dir,
+                capture_output=True, text=True
+            )
+            if build_result.returncode != 0:
+                raise RuntimeError(
+                    f"[team22] Failed to build span_attention:\n"
+                    f"{build_result.stdout}\n{build_result.stderr}"
+                )
+            print("[team22] span_attention built successfully.")
+            import span_attention  # noqa: F811
+        from models.team22_SPANV2_ESR import SPANV2_ESR
+        name, data_range = f"{model_id:02}_SPANV2_ESR_C2", 1.0
+        model_path = os.path.join('model_zoo', 'team22_spanv2_c2.pth')
+        model = SPANV2_ESR(3, 3, feature_channels=32, upscale=4, bias=False, use_span_attn=True)
+        state = torch.load(model_path, map_location='cpu')
+        for key in ['model', 'state_dict', 'params', 'params_ema']:
+            if isinstance(state, dict) and key in state:
+                state = state[key]
+                break
+        model.load_state_dict(state, strict=True)
     else:
         raise NotImplementedError(f"Model {model_id} is not implemented.")
 

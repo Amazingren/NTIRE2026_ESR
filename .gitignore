@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Logs & run artifacts
+*.log
+results_run*.txt
+
+# Build output (team22 CUDA op)
+span_attention_op/build/
+span_attention_op/*.egg-info/
+span_attention_op/dist/
