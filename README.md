@@ -22,7 +22,7 @@
 
 ## 📰 News
 
-- 🏆 **June 28th, 2026:** The challenge has concluded. All team submissions, checkpoints, and final results are now released!
+- 🏆 **June 28th, 2026:** All team submissions, checkpoints, and final results are now released!
 - 📄 **June 2026:** Challenge report published — *The Eleventh NTIRE 2026 Efficient Super-Resolution Challenge Report* (CVPRW 2026).
 - 🦕 **February 6th, 2026:** Challenge repository is ready!
 
