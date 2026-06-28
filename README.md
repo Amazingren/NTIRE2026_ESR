@@ -199,15 +199,17 @@ Evaluation is conducted in four steps:
 2. **PSNR filter** — Methods below 26.90 dB (valid) or 26.99 dB (test) are excluded.
 3. **Score computation** — For qualifying methods:
 
-$$\text{Score\_Runtime} = \exp\!\left(\frac{2 \times \text{Runtime}}{\text{Runtime}_\text{SPAN}}\right)$$
-
-$$\text{Score\_FLOPs} = \exp\!\left(\frac{2 \times \text{FLOPs}}{\text{FLOPs}_\text{SPAN}}\right)$$
-
-$$\text{Score\_Params} = \exp\!\left(\frac{2 \times \text{Params}}{\text{Params}_\text{SPAN}}\right)$$
+```
+Score_Runtime = exp( 2 × Runtime / Runtime_SPAN )
+Score_FLOPs   = exp( 2 × FLOPs   / FLOPs_SPAN   )
+Score_Params  = exp( 2 × Params  / Params_SPAN   )
+```
 
 4. **Final score:**
 
-$$\text{Score\_Final} = 0.8 \times \text{Score\_Runtime} + 0.1 \times \text{Score\_FLOPs} + 0.1 \times \text{Score\_Params}$$
+```
+Score_Final = 0.8 × Score_Runtime + 0.1 × Score_FLOPs + 0.1 × Score_Params
+```
 
 > For the SPAN baseline (Runtime = 7.74 ms, FLOPs = 9.83 G, Params = 0.151 M), all three scores equal **7.3891** and Score\_Final = **7.3891**.
 
